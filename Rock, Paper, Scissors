@@ -1,0 +1,80 @@
+# import random
+import random
+# import time
+import time
+
+random.seed(time.perf_counter())
+com_choice = ""
+com_wins = 0
+pl_choice = ""
+pl_wins = 0
+
+def computer_choice():
+    # initialize randint
+    num = random.randint(1,3)
+    global com_choice
+    if num == 1:
+        com_choice = "Rock" 
+    elif num == 2:
+        com_choice = "Paper"
+    elif num == 3:
+        com_choice = "Scissors"
+def input_check():
+    global pl_choice
+    pl_choice = input("Rock, Paper or Scissors: ")
+    # DEBUG ONLY
+    #print(pl_choice[0])
+    if pl_choice[0] == "r" or pl_choice[0] == "R":
+        pl_choice = "Rock"
+    elif pl_choice[0] == "p" or pl_choice[0] == "P":
+        pl_choice = "Paper"
+    elif pl_choice[0] == "s" or pl_choice[0] == "S":
+        pl_choice = "Scissors"
+    else:
+        print("Invalid response. Please try again...")
+        input_check()
+def result():
+    global pl_choice
+    global com_choice
+    global pl_wins
+    global com_wins
+    
+    print("You chose: " + pl_choice)
+    print("Computer chose: " + com_choice)
+    
+    if pl_choice == "Rock":
+        if com_choice == "Rock":
+            print("Tied...")
+        elif com_choice == "Paper":
+            print("You lost...")
+            com_wins += 1
+        elif com_choice == "Scissors":
+            print("You won!")
+            pl_wins += 1
+            
+    elif pl_choice == "Paper":
+        if com_choice == "Rock":
+            print("You won!")
+            pl_wins += 1
+        elif com_choice == "Paper":
+            print("Tied...")
+        elif com_choice == "Scissors":
+            print("You lost...")
+            com_wins += 1
+            
+    elif pl_choice == "Scissors":
+        if com_choice == "Rock":
+            print("You lost...")
+            com_wins += 1
+        elif com_choice == "Paper":
+            print("You won!")
+            pl_wins += 1
+        elif com_choice == "Scissors":
+            print("Tied...")
+            
+    print("Player: " +str(pl_wins) + " | " + "AI: " + str(com_wins))
+
+while True:
+    computer_choice()
+    input_check()
+    result()
